@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<!--15818015_井上恵彰-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出張依頼申請</title>
+    <!--bulmaフレームワーク-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" />
+    <script src="js/business_trip_support_system.js"></script>
+
+    <!--駅スパートライブラリ読み込み-->
+    <link class="css" rel="stylesheet" type="text/css" href="expCss/expGuiDateTime.css">
+    <script src="expJs/expGuiDateTime.js?key=dev_8rMnjgavqf3S" charset="UTF-8"></script>
+    <link class="css" rel="stylesheet" type="text/css" href="expCss/expGuiCourse.css">
+    <script src="expJs/expGuiCourse.js?key=dev_8rMnjgavqf3S" charset="UTF-8"></script>
+    <link class="css" rel="stylesheet" type="text/css" href="expCss/expGuiStation.css">
+    <script src="expJs/expGuiStation.js?key=dev_8rMnjgavqf3S" charset="UTF-8"></script>
+
+</head>
+
+<body>
+<br>
+<h1 class="title is-centered">出張依頼申請</h1>
+<form>
+    <div>
+        <label for="belonging" class="has-text-link has-text-weight-semibold has-background-light">所属:</label>
+        <input type="text" id="belonging" name="belonging" class="input is-small"/>
+    </div>
+
+    <div>
+        <label for="department" class="has-text-link has-text-weight-semibold has-background-light">学部:</label>
+        <input type="text" id="department" name="department" class="input is-small"/>
+    </div>
+
+    <div>
+        <label for="department2" class="has-text-link has-text-weight-semibold has-background-light">学科:</label>
+        <input type="text" id="department2" name="department2" class="input is-small"/>
+    </div>
+
+    <div>
+        <label for="job_title" class="has-text-link has-text-weight-semibold has-background-light">職位：</label>
+        <select id="job_title" name="job_title" class="input is-small">
+            <option value="教授" label="教授"></option>
+            <option value="准教授" label="准教授"></option>
+            <option value="助教授" label="助教授"></option>
+            <option value="助手" label="助手"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="name" class="has-text-link has-text-weight-semibold has-background-light">氏名:</label>
+        <input type="text" id="name" name="name" class="input is-small"/>
+    </div>
+
+    <br/>
+
+    <div>
+        <label for="purpose" class="has-text-link has-text-weight-semibold has-background-light">出張目的:</label>
+        <textarea id="purpose" name="purpose" class="input is-small"
+                  placeholder="詳細を入力してください。"></textarea>
+    </div>
+
+    <div>
+        <label for="place" class="has-text-link has-text-weight-semibold has-background-light">用務地</label>
+        <input type="text" id="place" name="place" class="input is-small"/>
+    </div>
+
+    <div>
+        <label for="place2" class="has-text-link has-text-weight-semibold has-background-light">用務先</label>
+        <input type="text" id="place2" name="place2" class="input is-small"/>
+    </div>
+
+    <br/>
+
+    <div>
+        <label for="departuredatetime" class="has-text-link has-text-weight-semibold has-background-light">出発日時:</label><br />
+        <input type="datetime-local" id="departuredatetime" name="departuredatetime" class="input is-small">
+    </div>
+
+    <div>
+        <label for="arrivaldatetime" class="has-text-link has-text-weight-semibold has-background-light">到着日時:</label><br />
+        <input type="datetime-local" id="arrivaldatetime" name="arrivaldatetime" class="input is-small">
+    </div>
+
+    <div>
+        <label for="number_of_nights" class="has-text-link has-text-weight-semibold has-background-light">宿泊日数：</label>
+        <input type="number" id="number_of_nights" name="number_of_nights" class="input is-small"/>
+    </div>
+
+</form>
+
+<br/>
+<h2 class="subtitle">経路検索</h2>
+<!--パーツ表示-->
+<!--ID付けることでjsで管理できる-->
+出発日時:<div id="dateTime"></div>
+出発駅:<div id="departure_station"></div>
+到着駅:<div id="arrival_station"></div>
+<br/>
+<form>
+    <button id="route_search_button" type="button" class="button has-text-white has-background-grey-darker">経路検索</button>
+    <button id="select_route_button" type="button" class="button has-text-white has-background-grey-darker">経路選択</button>
+</form>
+
+<br/>
+経路検索結果
+<div id="route_search_result"></div>
+選択した経路
+<div id="selected_route"></div>
+
+<br/>
+<form>
+<button id="calc_all_button" type="button" class="button has-text-white has-background-grey-darker">計算</button>
+</form>
+
+<br/>
+<div class="columns is-desktop">
+    <div class="column has-text-weight-bold">
+        <div style="background-color: #fce473" >
+            日当計:<div id="daily_allowance"></div>
+        </div>
+    </div>
+    <div class="column has-text-weight-bold">
+        <div style="background-color: #42afe3">
+            宿泊料計：<div id="accommodation_fee"></div>
+        </div>
+    </div>
+    <div class="column has-text-weight-bold">
+        <div style="background-color: #f68b39">
+            運賃計：<div id="fare"></div>
+        </div>
+    </div>
+</div>
+
+<br/>
+出力ファイル：<a href="./output.xlsx" class="button has-text-white has-background-grey-darker">output.xlsx</a>
+<br/>
+<br/>
+</body>
+
+</html>
